@@ -26,6 +26,10 @@ jobs:
       - name: Check .NET Core version
         run: dotnet --version
 
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+
       - name: Build
         run: ./build.sh vsix
 
@@ -33,5 +37,5 @@ jobs:
         if: github.ref == 'refs/heads/master'
         uses: actions/upload-artifact@v2
         with:
-          name: Extension VSIX
-          path: vscode-extension/*.vsix
+          name: Artifacts
+          path: artifacts/*
