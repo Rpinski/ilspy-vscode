@@ -5,6 +5,7 @@ using ICSharpCode.ILSpyX;
 using ICSharpCode.ILSpyX.Settings;
 using ILSpy.Backend.Application;
 using ILSpy.Backend.Decompiler;
+using ILSpyX.Backend.Analyzer;
 using ILSpyX.Backend.Application;
 using ILSpyX.Backend.LSP.Handlers;
 using ILSpyX.Backend.Search;
@@ -49,6 +50,7 @@ class Program
                 .WithHandler<GetNodesHandler>()
                 .WithHandler<RemoveAssemblyHandler>()
                 .WithHandler<SearchHandler>()
+                .WithHandler<AnalyzeHandler>()
              );
 
         server.LogInfo($"ILSpy LSP Backend PID: {Environment.ProcessId}");
@@ -63,6 +65,7 @@ class Program
         services.AddSingleton<AssemblyListManager>();
         services.AddSingleton<SingleThreadAssemblyList>();
         services.AddSingleton<SearchBackend>();
+        services.AddSingleton<AnalyzerBackend>();
         services.AddSingleton<ILSpyXApplication>();
     }
 }

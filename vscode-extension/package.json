@@ -82,6 +82,11 @@
 					"id": "ilspySearchResultsContainer",
 					"title": "ILSpy: Search Results",
 					"icon": ""
+				},
+				{
+					"id": "ilspyAnalyzeResultsContainer",
+					"title": "ILSpy: Analyze",
+					"icon": ""
 				}
 			]
 		},
@@ -98,6 +103,13 @@
 					"id": "ilspySearchResultsContainer",
 					"name": "ILSpy: Search Results",
 					"when": "ilspy.searchResultsToShow"
+				}
+			],
+			"ilspyAnalyzeResultsContainer": [
+				{
+					"id": "ilspyAnalyzeResultsContainer",
+					"name": "ILSpy: Analyze",
+					"when": "ilspy.analyzeResultsToShow"
 				}
 			]
 		},
@@ -146,6 +158,12 @@
 				"title": "Search in Decompiled Assemblies",
 				"category": "ILSpy",
 				"icon": "$(search-view-icon)"
+			},
+			{
+				"command": "ilspy.analyze",
+				"title": "Analyze Element",
+				"category": "ILSpy",
+				"icon": "$(search-view-icon)"
 			}
 		],
 		"menus": {
@@ -187,6 +205,11 @@
 				{
 					"command": "ilspy.reloadAssembly",
 					"when": "view == ilspyDecompiledMembers && viewItem == assemblyNode",
+					"group": "inline"
+				},
+				{
+					"command": "ilspy.analyze",
+					"when": "view == ilspyDecompiledMembers && viewItem == analyzableNode",
 					"group": "inline"
 				}
 			],

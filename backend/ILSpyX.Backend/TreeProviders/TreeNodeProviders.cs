@@ -1,6 +1,6 @@
 using ILSpy.Backend.Application;
-using ILSpy.Backend.Decompiler;
 using ILSpy.Backend.Model;
+using ILSpyX.Backend.TreeProviders.Analyzers;
 using System;
 
 namespace ILSpy.Backend.TreeProviders;
@@ -21,6 +21,7 @@ public class TreeNodeProviders
         NodeType.Namespace => Namespace,
         var type when NodeTypeHelper.IsTypeNode(type.Value) => Type,
         var type when NodeTypeHelper.IsMemberNode(type.Value) => Member,
+        NodeType.MethodUsedBy => MethodUsedBy,
         _ => throw new NotImplementedException($"No support for node type '{nodeType}'")
     };
 
@@ -35,6 +36,7 @@ public class TreeNodeProviders
         Namespace = new(application);
         Type = new(application);
         Member = new(application);
+        MethodUsedBy = new(application);
     }
 
     public RootNodesProvider Root { get; }
@@ -44,5 +46,6 @@ public class TreeNodeProviders
     public NamespaceNodeProvider Namespace { get; }
     public TypeNodeProvider Type { get; }
     public MemberNodeProvider Member { get; }
+    public MethodUsedByProvider MethodUsedBy { get; }
 }
 

@@ -21,5 +21,23 @@ export const ProductIconMapping = {
   [NodeType.ReferencesRoot]: "folder-library",
   [NodeType.AssemblyReference]: "library",
   [NodeType.Unknown]: "question",
+
+  [NodeType.AttributeAppliedTo]: "question",
+  [NodeType.EventImplementedBy]: "question",
+  [NodeType.EventOverriddenBy]: "question",
+  [NodeType.AssignedByFieldAccess]: "question",
+  [NodeType.ReadByFieldAccess]: "question",
+  [NodeType.MemberImplementsInterface]: "question",
+  [NodeType.MethodImplementedBy]: "question",
+  [NodeType.MethodOverriddenBy]: "question",
+  [NodeType.MethodUsedBy]: "question",
+  [NodeType.MethodUses]: "question",
+  [NodeType.MethodVirtualUsedBy]: "question",
+  [NodeType.PropertyImplementedBy]: "question",
+  [NodeType.PropertyOverriddenBy]: "question",
+  [NodeType.TypeExposedBy]: "question",
+  [NodeType.TypeExtensionMethods]: "question",
+  [NodeType.TypeInstantiatedBy]: "question",
+  [NodeType.TypeUsedBy]: "question",
 };
 

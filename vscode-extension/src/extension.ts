@@ -30,9 +30,12 @@ import { registerSearch } from "./commands/search";
 import { SearchResultTreeProvider } from "./decompiler/search/SearchResultTreeProvider";
 import { registerDecompileNode } from "./commands/decompileNode";
 import {
+  createAnalyzeResultTreeView,
   createDecompiledTreeView,
   createSearchResultTreeView,
 } from "./view/treeViews";
+import { AnalyzeResultTreeProvider } from "./decompiler/analyze/AnalyzeResultTreeProvider";
+import { registerAnalyze } from "./commands/analyze";
 
 let client: LanguageClient;
 
@@ -121,6 +124,13 @@ export async function activate(context: ExtensionContext) {
   );
   disposables.push(searchResultTreeView);
   disposables.push(registerSearch(searchResultTreeProvider));
+
+  const analyzeResultTreeProvider = new AnalyzeResultTreeProvider(ilspyBackend);
+  const analyzeResultTreeView = createAnalyzeResultTreeView(
+    analyzeResultTreeProvider
+  );
+  disposables.push(analyzeResultTreeView);
+  disposables.push(registerAnalyze(analyzeResultTreeProvider));
 
   disposables.push(
     workspace.registerTextDocumentContentProvider(
