@@ -2,16 +2,31 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "Build All",
+            "dependsOn": [
+                "Build Backend",
+                "Build Extension"
+            ],
+            "group": {
+                "kind": "build",
+            }
+        },
+        {
             "label": "Build Backend",
             "command": "dotnet",
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/backend/src/ILSpy.Backend/ILSpy.Backend.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
-            "problemMatcher": "$msCompile"
+            "options": {
+                "cwd": "${workspaceFolder}/backend"
+            },
+            "problemMatcher": "$msCompile",
+            "group": {
+                "kind": "build",
+            }
         },
         {
             "label": "Publish Backend",
@@ -47,8 +62,9 @@
             "problemMatcher": "$msCompile"
         },
         {
+            "label": "Build Extension",
             "type": "npm",
-            "script": "watch",
+            "script": "compile",
             "problemMatcher": "$tsc-watch",
             "isBackground": true,
             "options": {
@@ -59,8 +75,19 @@
             },
             "group": {
                 "kind": "build",
-                "isDefault": true
             }
+        },
+        {
+            "type": "npm",
+            "script": "watch",
+            "problemMatcher": "$tsc-watch",
+            "isBackground": true,
+            "options": {
+                "cwd": "${workspaceFolder}/vscode-extension"
+            },
+            "presentation": {
+                "reveal": "never"
+            },
         }
     ]
 }
