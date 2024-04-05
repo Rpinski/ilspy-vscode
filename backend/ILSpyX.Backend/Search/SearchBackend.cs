@@ -4,6 +4,7 @@
 using ICSharpCode.Decompiler.TypeSystem;
 using ICSharpCode.ILSpyX;
 using ICSharpCode.ILSpyX.Search;
+using ILSpy.Backend.Application;
 using ILSpy.Backend.Decompiler;
 using ILSpy.Backend.Model;
 using ILSpy.Backend.TreeProviders;
@@ -24,24 +25,14 @@ public class SearchBackend
 {
     private readonly ILogger logger;
     private readonly IComparer<SearchResult> resultsComparer = SearchResult.ComparerByName;
-    private readonly SingleThreadAssemblyList assemblyList;
+    private readonly ILSpyXApplication application;
     private readonly ILSpyBackendSettings ilspyBackendSettings;
 
-    public SearchBackend(ILoggerFactory loggerFactory, SingleThreadAssemblyList assemblyList, ILSpyBackendSettings ilspyBackendSettings)
+    public SearchBackend(ILoggerFactory loggerFactory, ILSpyXApplication application, ILSpyBackendSettings ilspyBackendSettings)
     {
         logger = loggerFactory.CreateLogger<SearchBackend>();
-        this.assemblyList = assemblyList;
+        this.application = application;
         this.ilspyBackendSettings = ilspyBackendSettings;
-    }
-
-    public async Task AddAssembly(string path)
-    {
-        await assemblyList.AddAssembly(path);
-    }
-
-    public async Task RemoveAssembly(string path)
-    {
-        await assemblyList.RemoveAssembly(path);
     }
 
     public async Task<IEnumerable<Node>> Search(string searchTerm, CancellationToken cancellationToken)
@@ -50,7 +41,7 @@ public class SearchBackend
         {
             try
             {
-                var assemblies = await assemblyList.GetAllAssemblies();
+                var assemblies = await application.AssemblyList.GetAllAssemblies();
 
                 var resultQueue = new ConcurrentQueue<SearchResult>();
                 var searchRequest = CreateSearchRequest(searchTerm, SearchMode.TypeAndMember);

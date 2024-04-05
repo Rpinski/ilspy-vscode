@@ -1,11 +1,7 @@
 ﻿// Copyright(c) 2021 ICSharpCode
 // Licensed under the MIT license. See the LICENSE file in the project root for more information.
 
-using ICSharpCode.ILSpyX;
-using ICSharpCode.ILSpyX.Settings;
 using ILSpy.Backend.Application;
-using ILSpy.Backend.Decompiler;
-using ILSpyX.Backend.Analyzer;
 using ILSpyX.Backend.Application;
 using ILSpyX.Backend.LSP.Handlers;
 using ILSpyX.Backend.Search;
@@ -60,12 +56,8 @@ class Program
 
     static void ConfigureServices(IServiceCollection services)
     {
-        services.AddSingleton<ISettingsProvider, DummySettingsProvider>();
-        services.AddSingleton<ILSpyBackendSettings>();
-        services.AddSingleton<AssemblyListManager>();
-        services.AddSingleton<SingleThreadAssemblyList>();
-        services.AddSingleton<SearchBackend>();
-        services.AddSingleton<AnalyzerBackend>();
         services.AddSingleton<ILSpyXApplication>();
+        services.AddSingleton<ILSpyBackendSettings>();
+        services.AddSingleton<SearchBackend>();
     }
 }

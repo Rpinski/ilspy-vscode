@@ -16,12 +16,10 @@ namespace ILSpyX.Backend.LSP.Handlers;
 public class InitWithAssembliesHandler : IJsonRpcRequestHandler<InitWithAssembliesRequest, InitWithAssembliesResponse>
 {
     private readonly ILSpyXApplication application;
-    private readonly SearchBackend searchBackend;
 
-    public InitWithAssembliesHandler(ILSpyXApplication application, SearchBackend searchBackend)
+    public InitWithAssembliesHandler(ILSpyXApplication application)
     {
         this.application = application;
-        this.searchBackend = searchBackend;
     }
 
     public async Task<InitWithAssembliesResponse> Handle(InitWithAssembliesRequest request, CancellationToken cancellationToken)
@@ -29,7 +27,7 @@ public class InitWithAssembliesHandler : IJsonRpcRequestHandler<InitWithAssembli
         var loadedAssemblyDatas = new List<AssemblyData>();
         foreach (var assemblyPath in request.AssemblyPaths)
         {
-            await searchBackend.AddAssembly(assemblyPath);
+            await application.AssemblyList.AddAssembly(assemblyPath);
             var assemblyData = application.DecompilerBackend.AddAssembly(assemblyPath);
             if (assemblyData is not null)
             {

@@ -1,4 +1,5 @@
 using ICSharpCode.ILSpyX;
+using ILSpy.Backend.Application;
 using ILSpy.Backend.Decompiler;
 using ILSpy.Backend.Model;
 using ILSpyX.Backend.Application;
@@ -11,10 +12,9 @@ public class SearchBackendTests
 {
     private static async Task<SearchBackend> CreateSearchBackend()
     {
-        var assemblyListManager = new AssemblyListManager(new DummySettingsProvider());
-        var assemblyList = new SingleThreadAssemblyList(assemblyListManager);
-        var searchBackend = new SearchBackend(new NullLoggerFactory(), assemblyList, new ILSpyBackendSettings());
-        await searchBackend.AddAssembly(
+        var application = new ILSpyXApplication(new NullLoggerFactory(), new ILSpyBackendSettings());
+        var searchBackend = new SearchBackend(new NullLoggerFactory(), application, new ILSpyBackendSettings());
+        await application.AssemblyList.AddAssembly(
             Path.Combine(Path.GetDirectoryName(typeof(SearchBackendTests).Assembly.Location) ?? "", "TestAssembly.dll"));
         return searchBackend;
     }

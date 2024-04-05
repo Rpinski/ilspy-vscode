@@ -193,6 +193,27 @@ public class DecompilerBackend : IDecompilerBackend
         return DecompileResult.WithError("No assembly given");
     }
 
+    public IEntity? GetEntityFromHandle(string assemblyPath, EntityHandle handle)
+    {
+        if (handle.IsNil)
+        {
+            return null;
+        }
+
+        var decompiler = GetDecompiler(assemblyPath);
+        var module = decompiler.TypeSystem.MainModule;
+
+        return handle.Kind switch
+        {
+            HandleKind.TypeDefinition => module.GetDefinition((TypeDefinitionHandle) handle),
+            HandleKind.FieldDefinition => module.GetDefinition((FieldDefinitionHandle) handle),
+            HandleKind.MethodDefinition => module.GetDefinition((MethodDefinitionHandle) handle),
+            HandleKind.PropertyDefinition => module.GetDefinition((PropertyDefinitionHandle) handle),
+            HandleKind.EventDefinition => module.GetDefinition((EventDefinitionHandle) handle),
+            _ => null,
+        };
+    }
+
     private string GetCSharpCode(string assemblyPath, EntityHandle handle, string outputLanguage)
     {
         if (handle.IsNil)

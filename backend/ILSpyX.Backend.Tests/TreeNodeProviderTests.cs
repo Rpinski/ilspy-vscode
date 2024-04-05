@@ -22,7 +22,7 @@ public class TreeNodeProviderTests
     public void GetRootNodes()
     {
         var application = CreateTestApplication();
-        var list = application.TreeNodeProviders.Root.GetChildren(null);
+        var list = application.TreeNodeProviders.AssemblyTreeRoot.GetChildren(null);
         Assert.Collection(list,
                 node => {
                     Assert.Equal("TestAssembly, 1.0.0.0, .NETCoreApp, v8.0", node.DisplayName);

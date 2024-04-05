@@ -1,17 +1,16 @@
 using ILSpy.Backend.Application;
 using ILSpy.Backend.Decompiler;
 using ILSpy.Backend.Model;
-using ILSpy.Backend.TreeProviders;
 using System;
 using System.Collections.Generic;
 
-namespace ILSpyX.Backend.TreeProviders.Analyzers;
+namespace ILSpy.Backend.TreeProviders;
 
-public class MethodUsedByProvider : ITreeNodeProvider
+public class AssemblyTreeRootNodesProvider : ITreeNodeProvider
 {
     private readonly ILSpyXApplication application;
 
-    public MethodUsedByProvider(ILSpyXApplication application)
+    public AssemblyTreeRootNodesProvider(ILSpyXApplication application)
     {
         this.application = application;
     }

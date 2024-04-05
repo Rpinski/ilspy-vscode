@@ -11,3 +11,11 @@ public interface ITreeNodeProvider
     public IEnumerable<Node> GetChildren(NodeMetadata? nodeMetadata) => Enumerable.Empty<Node>();
     DecompileResult Decompile(NodeMetadata nodeMetadata, string outputLanguage);
 }
+
+public class DummyTreeNodeProvider : ITreeNodeProvider
+{
+    public DecompileResult Decompile(NodeMetadata nodeMetadata, string outputLanguage)
+    {
+        return DecompileResult.Empty();
+    }
+}

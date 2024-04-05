@@ -5,7 +5,9 @@
 
 import { NodeType } from "./protocol/NodeType";
 
-export const ProductIconMapping = {
+const UNKNOWN_ICON = "question";
+
+const ProductIconMapping: { [key in NodeType]?: string } = {
   [NodeType.Assembly]: "library",
   [NodeType.Namespace]: "symbol-namespace",
   [NodeType.Event]: "symbol-event",
@@ -20,24 +22,9 @@ export const ProductIconMapping = {
   [NodeType.Property]: "symbol-property",
   [NodeType.ReferencesRoot]: "folder-library",
   [NodeType.AssemblyReference]: "library",
-  [NodeType.Unknown]: "question",
-
-  [NodeType.AttributeAppliedTo]: "question",
-  [NodeType.EventImplementedBy]: "question",
-  [NodeType.EventOverriddenBy]: "question",
-  [NodeType.AssignedByFieldAccess]: "question",
-  [NodeType.ReadByFieldAccess]: "question",
-  [NodeType.MemberImplementsInterface]: "question",
-  [NodeType.MethodImplementedBy]: "question",
-  [NodeType.MethodOverriddenBy]: "question",
-  [NodeType.MethodUsedBy]: "question",
-  [NodeType.MethodUses]: "question",
-  [NodeType.MethodVirtualUsedBy]: "question",
-  [NodeType.PropertyImplementedBy]: "question",
-  [NodeType.PropertyOverriddenBy]: "question",
-  [NodeType.TypeExposedBy]: "question",
-  [NodeType.TypeExtensionMethods]: "question",
-  [NodeType.TypeInstantiatedBy]: "question",
-  [NodeType.TypeUsedBy]: "question",
+  [NodeType.Unknown]: UNKNOWN_ICON,
 };
 
+export function getNodeIcon(nodeType: NodeType | undefined) {
+  return ProductIconMapping[nodeType ?? NodeType.Unknown] ?? UNKNOWN_ICON;
+}
