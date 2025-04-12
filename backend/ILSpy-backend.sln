@@ -26,6 +26,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ILSpyX.Backend.LSP", "ILSpy
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ILSpyX.Backend.LSP.Tests", "ILSpyX.Backend.LSP.Tests\ILSpyX.Backend.LSP.Tests.csproj", "{F20F4782-BA8F-40ED-A655-1EE55334CDFA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ILSpyX.Backend.MCP", "ILSpyX.Backend.MCP\ILSpyX.Backend.MCP.csproj", "{A33F9DB2-3C9C-416F-AAEB-C248EF497D4C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -96,6 +98,18 @@ Global
 		{F20F4782-BA8F-40ED-A655-1EE55334CDFA}.Release|x64.Build.0 = Release|Any CPU
 		{F20F4782-BA8F-40ED-A655-1EE55334CDFA}.Release|x86.ActiveCfg = Release|Any CPU
 		{F20F4782-BA8F-40ED-A655-1EE55334CDFA}.Release|x86.Build.0 = Release|Any CPU
+		{A33F9DB2-3C9C-416F-AAEB-C248EF497D4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A33F9DB2-3C9C-416F-AAEB-C248EF497D4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A33F9DB2-3C9C-416F-AAEB-C248EF497D4C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A33F9DB2-3C9C-416F-AAEB-C248EF497D4C}.Debug|x64.Build.0 = Debug|Any CPU
+		{A33F9DB2-3C9C-416F-AAEB-C248EF497D4C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A33F9DB2-3C9C-416F-AAEB-C248EF497D4C}.Debug|x86.Build.0 = Debug|Any CPU
+		{A33F9DB2-3C9C-416F-AAEB-C248EF497D4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A33F9DB2-3C9C-416F-AAEB-C248EF497D4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A33F9DB2-3C9C-416F-AAEB-C248EF497D4C}.Release|x64.ActiveCfg = Release|Any CPU
+		{A33F9DB2-3C9C-416F-AAEB-C248EF497D4C}.Release|x64.Build.0 = Release|Any CPU
+		{A33F9DB2-3C9C-416F-AAEB-C248EF497D4C}.Release|x86.ActiveCfg = Release|Any CPU
+		{A33F9DB2-3C9C-416F-AAEB-C248EF497D4C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
