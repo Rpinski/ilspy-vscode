@@ -17,8 +17,8 @@ public class NamespaceNodeProvider(
         string namespaceName = string.IsNullOrEmpty(nodeMetadata.Name) ? "<global>" : nodeMetadata.Name;
         return Task.FromResult(outputLanguage switch
         {
-            LanguageName.IL => DecompileResult.WithCode($"namespace {namespaceName}"),
-            _ => DecompileResult.WithCode($"namespace {namespaceName} {{ }}")
+            LanguageName.IL => DecompileResult.WithCode($"namespace {namespaceName}", DecompiledOutputType.IL),
+            _ => DecompileResult.WithCode($"namespace {namespaceName} {{ }}", DecompiledOutputType.CSharp)
         });
     }
 

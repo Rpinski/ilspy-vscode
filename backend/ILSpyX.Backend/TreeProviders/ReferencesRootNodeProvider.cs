@@ -16,7 +16,7 @@ public class ReferencesRootNodeProvider(
         string code = string.Join('\n',
             (await GetAssemblyReferences(nodeMetadata.GetAssemblyFileIdentifier()))
             .Select(reference => $"// {reference}"));
-        return DecompileResult.WithCode(code);
+        return DecompileResult.WithCode(code, DecompiledOutputType.CSharp);
     }
 
     public async Task<IEnumerable<Node>> GetChildrenAsync(NodeMetadata? nodeMetadata)

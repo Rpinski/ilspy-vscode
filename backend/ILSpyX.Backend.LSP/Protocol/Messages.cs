@@ -47,13 +47,15 @@ namespace ILSpyX.Backend.LSP.Protocol
 
     public record DecompileResponse(
         string? DecompiledCode,
+        DecompiledOutputType OutputType,
         bool IsError,
         string? ErrorMessage,
         bool ShouldUpdateAssemblyList
     )
     {
         public DecompileResponse(DecompileResult decompileResult, bool shouldUpdateAssemblyList) :
-            this(decompileResult.DecompiledCode, decompileResult.IsError, decompileResult.ErrorMessage,
+            this(decompileResult.DecompiledCode, decompileResult.OutputType, decompileResult.IsError,
+                decompileResult.ErrorMessage,
                 shouldUpdateAssemblyList)
         { }
     }

@@ -35,7 +35,8 @@ public class ResourceNodeProvider(SingleThreadAssemblyList assemblyList) : ITree
         string sizeInBytesText = sizeInBytes == null ? "" : ", " + sizeInBytes + " bytes";
         string test = $"// {resource.Name} ({resource.ResourceType}, {resource.Attributes}{sizeInBytesText})";
         return DecompileResult.WithCode(
-            $"// {resource.Name} ({resource.ResourceType}, {resource.Attributes}{sizeInBytesText})");
+            $"// {resource.Name} ({resource.ResourceType}, {resource.Attributes}{sizeInBytesText})",
+            DecompiledOutputType.CSharp);
     }
 
 

@@ -11,7 +11,7 @@ public class AssemblyReferenceNodeProvider(DecompilerBackend decompilerBackend) 
     public Task<DecompileResult> Decompile(NodeMetadata nodeMetadata, string outputLanguage)
     {
         string code = $"// {nodeMetadata.Name}";
-        return Task.FromResult(DecompileResult.WithCode(code));
+        return Task.FromResult(DecompileResult.WithCode(code, DecompiledOutputType.CSharp));
     }
 
     public async Task<IEnumerable<Node>> CreateNodesAsync(AssemblyFileIdentifier assemblyFile)

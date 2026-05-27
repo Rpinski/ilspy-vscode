@@ -154,8 +154,9 @@ public class DecompilerBackend(
     {
         return outputLanguage switch
         {
-            LanguageName.IL => DecompileResult.WithCode(await GetILCode(assemblyFile, handle)),
-            _ => DecompileResult.WithCode(await GetCSharpCode(assemblyFile, handle, outputLanguage))
+            LanguageName.IL => DecompileResult.WithCode(await GetILCode(assemblyFile, handle), DecompiledOutputType.IL),
+            _ => DecompileResult.WithCode(await GetCSharpCode(assemblyFile, handle, outputLanguage),
+                DecompiledOutputType.CSharp)
         };
     }
 
@@ -410,7 +411,7 @@ public class DecompilerBackend(
             }
         }
 
-        return DecompileResult.WithCode(output.ToString());
+        return DecompileResult.WithCode(output.ToString(), DecompiledOutputType.CSharp);
     }
 
     private static void WriteCommentLine(StringWriter output, string? s = null)

@@ -1,14 +1,11 @@
 /*------------------------------------------------------------------------------------------------
- *  Copyright (c) 2021 ICSharpCode
+ *  Copyright (c) ICSharpCode
  *  Licensed under the MIT License. See LICENSE.TXT in the project root for license information.
  *-----------------------------------------------------------------------------------------------*/
 
-import { DecompiledOutputType } from "./DecompiledOutputType";
-
-export default interface DecompileResponse {
-  decompiledCode?: string;
-  outputType: DecompiledOutputType;
-  isError: boolean;
-  errorMessage?: string;
-  shouldUpdateAssemblyList: boolean;
+export enum DecompiledOutputType {
+  NoData = 0,
+  CSharp = 1,
+  IL = 2,
+  Markdown = 3,
 }
