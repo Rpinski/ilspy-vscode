@@ -767,6 +767,16 @@
 					"light": "resources/il-spy-modern-icon.svg",
 					"dark": "resources/il-spy-modern-icon-dark.svg"
 				}
+			},
+			{
+				"id": "ilspy-text-md",
+				"aliases": [
+					"ILSpy (Text)"
+				],
+				"icon": {
+					"light": "resources/il-spy-modern-icon.svg",
+					"dark": "resources/il-spy-modern-icon-dark.svg"
+				}
 			}
 		],
 		"grammars": [
@@ -774,6 +784,11 @@
 				"language": "ilspy-code-cs",
 				"scopeName": "source.ilspy-code-cs",
 				"path": "resources/ilspy-code-cs.tmLanguage.json"
+			},
+			{
+				"language": "ilspy-text-md",
+				"scopeName": "text.ilspy-text-md",
+				"path": "resources/ilspy-text-md.tmLanguage.json"
 			}
 		]
 	}

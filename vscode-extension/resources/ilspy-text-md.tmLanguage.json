@@ -1,0 +1,8 @@
+{
+	"scopeName": "text.ilspy-text-md",
+	"patterns": [
+		{
+			"include": "text.html.markdown"
+		}
+	]
+}
