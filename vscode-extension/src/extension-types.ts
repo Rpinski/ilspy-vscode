@@ -61,6 +61,11 @@ export enum SymbolModifiers {
   ReadOnly = 512,
 }
 
+export enum DecompilationFormat {
+  Code = 0,
+  MarkdownDocument = 1,
+}
+
 export interface Node {
   metadata?: NodeMetadata;
   displayName: string;
@@ -68,6 +73,7 @@ export interface Node {
   mayHaveChildren: boolean;
   modifiers: SymbolModifiers;
   flags: NodeFlags;
+  decompiledAs: DecompilationFormat;
 }
 
 export enum LanguageName {

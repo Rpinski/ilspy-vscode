@@ -5,12 +5,16 @@
 
 import * as vscode from "vscode";
 import { DecompilerTextDocumentContentProvider } from "../decompiler/DecompilerTextDocumentContentProvider";
-import { languageInfos } from "../decompiler/languageInfos";
+import { ILSPY_TEXT_MD_LANG, languageInfos } from "../decompiler/languageInfos";
 import { nodeDataToUri } from "../decompiler/nodeUri";
 import { getDefaultOutputLanguage } from "../decompiler/settings";
 import { hasNodeCommand } from "../decompiler/utils";
 import { executeILSpyCommand, registerILSpyCommand } from "./commandUtils";
-import { AvailableNodeCommands, Node } from "../extension-types";
+import {
+  AvailableNodeCommands,
+  DecompilationFormat,
+  Node,
+} from "../extension-types";
 
 let lastSelectedNode: Node | undefined = undefined;
 
@@ -31,12 +35,16 @@ export function registerDecompileNodeCommand(
 
         contentProvider.setDocumentOutputLanguage(uri, language);
 
-        let doc = await vscode.workspace.openTextDocument(uri);
-        vscode.languages.setTextDocumentLanguage(
-          doc,
-          languageInfos[language].vsLanguageMode,
-        );
-        await vscode.window.showTextDocument(doc, { preview: true });
+        if (node.decompiledAs === DecompilationFormat.MarkdownDocument) {
+          await vscode.commands.executeCommand("markdown.showPreview", uri);
+        } else {
+          let doc = await vscode.workspace.openTextDocument(uri);
+          vscode.languages.setTextDocumentLanguage(
+            doc,
+            languageInfos[language].vsLanguageMode,
+          );
+          await vscode.window.showTextDocument(doc, { preview: true });
+        }
       }
 
       if (revealInTree) {

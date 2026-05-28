@@ -11,4 +11,5 @@ public record Node()
     public bool MayHaveChildren { get; init; }
     public SymbolModifiers SymbolModifiers { get; init; } = SymbolModifiers.None;
     public NodeFlags Flags { get; init; } = NodeFlags.None;
+    public DecompilationFormat DecompiledAs { get; init; } = DecompilationFormat.Code;
 }

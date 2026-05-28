@@ -35,6 +35,7 @@ vi.mock("path", () => {
 import { nodeDataToUri, uriToNode } from "./nodeUri";
 import {
   AvailableNodeCommands,
+  DecompilationFormat,
   Node,
   NodeFlags,
   NodeMetadata,
@@ -60,6 +61,7 @@ it("handles Windows-style backslashes when path.sep is '\\'", () => {
     mayHaveChildren: false,
     modifiers: SymbolModifiers.None,
     flags: NodeFlags.None,
+    decompiledAs: DecompilationFormat.Code,
   };
 
   const uri = nodeDataToUri(node);

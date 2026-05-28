@@ -26,6 +26,7 @@ vi.mock("vscode", () => {
 import { nodeDataToUri, uriToNode, ILSPY_URI_SCHEME } from "./nodeUri";
 import {
   AvailableNodeCommands,
+  DecompilationFormat,
   Node,
   NodeFlags,
   NodeMetadata,
@@ -52,6 +53,7 @@ describe("nodeUri utilities", () => {
       mayHaveChildren: false,
       modifiers: SymbolModifiers.None,
       flags: NodeFlags.None,
+      decompiledAs: DecompilationFormat.Code,
     };
 
     const uri = nodeDataToUri(node);
@@ -88,6 +90,7 @@ describe("nodeUri utilities", () => {
       mayHaveChildren: false,
       modifiers: SymbolModifiers.None,
       flags: NodeFlags.None,
+      decompiledAs: DecompilationFormat.Code,
     };
 
     const uri = nodeDataToUri(node);
@@ -115,6 +118,7 @@ describe("nodeUri utilities", () => {
       mayHaveChildren: false,
       modifiers: SymbolModifiers.None,
       flags: NodeFlags.None,
+      decompiledAs: DecompilationFormat.Code,
     };
 
     const uri = nodeDataToUri(node);

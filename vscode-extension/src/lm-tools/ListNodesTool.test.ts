@@ -28,6 +28,7 @@ import type IILSpyBackend from "../decompiler/IILSpyBackend";
 import { ListNodesTool } from "./ListNodesTool";
 import {
   AvailableNodeCommands,
+  DecompilationFormat,
   Node,
   NodeMetadata,
   NodeType,
@@ -112,6 +113,7 @@ function createNode(overrides?: Partial<Node>): Node {
     modifiers: 0,
     flags: 0,
     metadata: createNodeMetadata(),
+    decompiledAs: DecompilationFormat.Code,
     ...overrides,
   };
 }
