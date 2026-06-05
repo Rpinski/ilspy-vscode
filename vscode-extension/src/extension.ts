@@ -51,6 +51,7 @@ import { registerLMTools } from "./lm-tools/registerLMTools";
 import { registerRevealNodeCommand } from "./commands/revealNodeCommand";
 import { ILSpyExtensionApi } from "./extension-api";
 import { executeILSpyCommand } from "./commands/commandUtils";
+import { registerDecompiledDocumentSymbolProvider } from "./decompiler/DecompiledDocumentSymbolProvider";
 
 let client: LanguageClient;
 
@@ -181,6 +182,7 @@ export async function activate(
       decompilerTextDocumentContentProvider,
     ),
   );
+  disposables.push(registerDecompiledDocumentSymbolProvider(ilspyBackend));
 
   disposables.push(
     registerDecompileNodeCommand(decompilerTextDocumentContentProvider),
