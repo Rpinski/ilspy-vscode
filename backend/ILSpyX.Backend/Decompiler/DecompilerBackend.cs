@@ -300,12 +300,18 @@ public class DecompilerBackend(
     private string GetAssemblyCode(AssemblyFileIdentifier assemblyFile, CSharpDecompiler decompiler)
     {
         using var output = new StringWriter();
-        WriteCommentLine(output, assemblyFile.BundledAssemblyFile ?? assemblyFile.File);
+        string file = assemblyFile.BundledAssemblyFile ?? assemblyFile.File;
+        output.WriteLine($"# {Path.GetFileNameWithoutExtension(file)}");
+        output.WriteLine();
+        output.WriteLine(file);
+        
         var module = decompiler.TypeSystem.MainModule.MetadataFile;
         if (module is null)
         {
             return string.Empty;
         }
+
+        output.WriteLine();
 
         var metadata = module.Metadata;
         if (metadata.IsAssembly)
@@ -313,23 +319,23 @@ public class DecompilerBackend(
             var name = metadata.GetAssemblyDefinition();
             if ((name.Flags & System.Reflection.AssemblyFlags.WindowsRuntime) != 0)
             {
-                WriteCommentLine(output, metadata.GetString(name.Name) + " [WinRT]");
+                output.WriteLine(metadata.GetString(name.Name) + " [WinRT]");
             }
             else
             {
-                WriteCommentLine(output, metadata.GetFullAssemblyName());
+                output.WriteLine(metadata.GetFullAssemblyName());
             }
         }
         else
         {
-            WriteCommentLine(output, module.Name);
+            output.WriteLine(module.Name);
         }
 
         var mainModule = decompiler.TypeSystem.MainModule;
         var globalType = mainModule.TypeDefinitions.FirstOrDefault();
         if (globalType != null)
         {
-            output.Write("// Global type: ");
+            output.Write("**Global type:** ");
             output.Write(globalType.FullName);
             output.WriteLine();
         }
@@ -345,7 +351,7 @@ public class DecompilerBackend(
                     new ICSharpCode.Decompiler.TypeSystem.GenericContext());
                 if (entrypoint != null)
                 {
-                    output.Write("// Entry point: ");
+                    output.Write("**Entry point:** ");
                     output.Write(entrypoint.DeclaringType.FullName + "." + entrypoint.Name);
                     output.WriteLine();
                 }
@@ -353,19 +359,19 @@ public class DecompilerBackend(
 
             if (module is PEFile peFileModule)
             {
-                output.WriteLine("// Architecture: " + peFileModule.GetPlatformDisplayName());
+                output.WriteLine("**Architecture:** " + peFileModule.GetPlatformDisplayName());
             }
 
             if ((corHeader.Flags & System.Reflection.PortableExecutable.CorFlags.ILOnly) == 0)
             {
-                output.WriteLine("// This assembly contains unmanaged code.");
+                output.WriteLine("This assembly contains unmanaged code.");
             }
         }
 
         if (module is PEFile peFile)
         {
             string runtimeName = peFile.GetRuntimeDisplayName();
-            output.WriteLine("// Runtime: " + runtimeName);
+            output.WriteLine("**Runtime:** " + runtimeName);
         }
 
         output.WriteLine();

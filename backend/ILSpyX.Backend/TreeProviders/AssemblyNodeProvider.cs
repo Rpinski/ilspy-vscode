@@ -51,7 +51,8 @@ public class AssemblyNodeProvider(
                 Description = Path.GetFileName(assemblyData.FilePath),
                 MayHaveChildren = true,
                 SymbolModifiers = SymbolModifiers.None,
-                Flags = NodeFlagsHelper.GetNodeFlags(assemblyData)
+                Flags = NodeFlagsHelper.GetNodeFlags(assemblyData),
+                DecompiledAs = DecompilationFormat.MarkdownDocument,
             };
         }
 
@@ -69,7 +70,8 @@ public class AssemblyNodeProvider(
             Description = assemblyData.FilePath,
             MayHaveChildren = true,
             SymbolModifiers = SymbolModifiers.None,
-            Flags = NodeFlagsHelper.GetNodeFlags(assemblyData)
+            Flags = NodeFlagsHelper.GetNodeFlags(assemblyData),
+            DecompiledAs = DecompilationFormat.MarkdownDocument,
         };
     }
 
